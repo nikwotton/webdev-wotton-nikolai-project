@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <form #f="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input #name="ngModel" [ngModel]="widget['name']" ngModel required name="name" type="text"
+             class="form-control" id="name" placeholder="Widget Name">
+      <span class="help-block" *ngIf="name.invalid && name.touched">
+        Please enter a Widget Name!
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="text">Text</label>
+      <input #text="ngModel" [ngModel]="widget['text']" ngModel required name="text" type="text"
+             class="form-control" id="text" placeholder="Widget Text">
+      <span class="help-block" *ngIf="text.invalid && text.touched">
+        Please enter Widget Text!
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="size">Size</label>
+      <input #size="ngModel" [ngModel]="widget['size']" ngModel required name="size" type="number"
+             class="form-control" id="size" placeholder="1-6" min="1" max="6">
+      <span class="help-block" *ngIf="size.invalid && size.touched">
+        Please enter a valid header size from 1 - 6!
+      </span>
+    </div>
+    <button (click)="this.notify.emit()"
+            class="btn-danger form-control button-top-margin">Delete
+    </button>
+  </form>
+</div>

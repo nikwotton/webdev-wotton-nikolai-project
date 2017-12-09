@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <form #f="ngForm">
+    <div class="form-group">
+      <label for="text">Text</label>
+      <input #text="ngModel" [ngModel]="widget['text']" ngModel required name="text" type="text"
+             class="form-control" id="text" placeholder="Text">
+      <span class="help-block" *ngIf="text.invalid && text.touched">
+        Please enter Text!
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="rows">Rows</label>
+      <input #rows="ngModel" [ngModel]="widget['rows']" ngModel name="rows" type="number"
+             class="form-control" id="rows">
+    </div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input #name="ngModel" [ngModel]="widget['name']" ngModel required name="name" type="text"
+             class="form-control" id="name" placeholder="Name">
+      <span class="help-block" *ngIf="name.invalid && name.touched">
+        Please enter a Name!
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="placeholder">Placeholder</label>
+      <input #placeholder="ngModel" [ngModel]="widget['placeholder']" ngModel name="placeholder"
+             type="text"
+             class="form-control" id="placeholder" placeholder="Placeholder">
+    </div>
+    <div class="input-group">
+      <input type="text" readonly value="Formatted" class="form-control"/>
+      <span class="input-group-addon"><input [(ngModel)]="widget['formatted']" type="checkbox"/></span>
+    </div>
+    <button (click)="this.notify.emit()" class="btn-danger form-control button-top-margin">Delete
+    </button>
+  </form>
+</div>
+
+

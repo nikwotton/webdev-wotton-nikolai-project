@@ -1,0 +1,58 @@
+<div class="container">
+  <div *ngIf="(username.invalid && username.touched) ||
+              (password.invalid && password.touched) ||
+              (verify.invalid && verify.touched) ||
+              errorFlag" class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+  <h1>Register</h1>
+  <form #f="ngForm">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input placeholder="username"
+             name="username"
+             type="text"
+             class="form-control"
+             id="username"
+             ngModel
+             minlength="3"
+             required
+             #username="ngModel" />
+      <span class="help-block" *ngIf="username.invalid && username.touched">
+        Please enter a username at least 3 characters long!
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input placeholder="password"
+             name="password"
+             type="password"
+             class="form-control"
+             id="password"
+             ngModel
+             required
+             #password="ngModel" />
+      <span class="help-block" *ngIf="password.invalid && password.touched">
+        Please enter a password!
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="verify">Verify Your Password</label>
+      <input placeholder="verify"
+             name="verify"
+             type="password"
+             class="form-control"
+             id="verify"
+             ngModel
+             required
+             #verify="ngModel" />
+      <span class="help-block" *ngIf="verify.invalid && verify.touched">
+        Please verify your password!
+      </span>
+    </div>
+  </form>
+  <button [disabled]="!f.valid" (click)="submit()" class="btn btn-primary btn-block">Register</button>
+  <a [routerLink]="['/login']" class="btn btn-danger btn-block">Cancel</a>
+</div>

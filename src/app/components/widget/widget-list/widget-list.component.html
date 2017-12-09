@@ -1,0 +1,118 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--back mark-->
+    <p class="navbar-text pull-left">
+      <a [routerLink]="['../..']" class="navbar-link"><span
+        class="glyphicon glyphicon-chevron-left"></span></a>
+    </p>
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b>Widgets</b>
+      </a>
+    </p>
+
+    <!--plus mark-->
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['new']" class="navbar-link"><span
+        class="glyphicon glyphicon-plus"></span></a>
+    </p>
+
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <ol class="list-group" id="sorted">
+    <li class="list-group-item borderless row" *ngFor="let widget of widgets" id="draggable">
+      <div class="inline truncate col-xs-8">
+        <div [ngSwitch]="widget.type">
+          <div *ngSwitchCase="'HEADER'">
+            <div [ngSwitch]="widget.size">
+              <div *ngSwitchCase="1">
+                <h1>
+                  {{widget.text}}
+                </h1>
+              </div>
+              <div *ngSwitchCase="2">
+                <h2>
+                  {{widget.text}}
+                </h2>
+              </div>
+              <div *ngSwitchCase="3">
+                <h3>
+                  {{widget.text}}
+                </h3>
+              </div>
+              <div *ngSwitchCase=4>
+                <h4>
+                  {{widget.text}}
+                </h4>
+              </div>
+              <div *ngSwitchCase="5">
+                <h5>
+                  {{widget.text}}
+                </h5>
+              </div>
+              <div *ngSwitchCase="6">
+                <h6>
+                  {{widget.text}}
+                </h6>
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchCase="'YOUTUBE'" class="youtube-widget">
+            <iframe width="{{widget.width}}" height="{{widget.width}}"
+                    [src]='sanitizer.bypassSecurityTrustResourceUrl(widget.url)' frameborder="0"
+                    gesture="media" allowfullscreen></iframe>
+          </div>
+          <div *ngSwitchCase="'IMAGE'">
+            <img width="{{widget.width}}"
+                 src="{{widget.url}}">
+          </div>
+          <div *ngSwitchCase="'HTML'">
+            <div [innerHTML]="widget.text"></div>
+          </div>
+        </div>
+      </div>
+      <div class="inline col-xs-4">
+        <a class="pull-right">
+          <span class="glyphicon glyphicon-align-justify color-black"></span>
+        </a>
+        <a [routerLink]="[widget._id]" class="pull-right"><span
+          class="glyphicon glyphicon-cog"></span></a>
+      </div>
+    </li>
+  </ol>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+  (function () {
+    jQuery(function () {
+      $('#sorted').sortable({
+        stop: function(event, ui){
+          var finalIndex = jQuery.index(ui.item);
+          console.log(finalIndex);
+        }
+      })
+    });
+  })();
+  (function () {
+    function init() {
+      $('#draggable').draggable();
+    }
+    $(init)
+  })();
+</script>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/profile']"><span class="glyphicon glyphicon-user"></span></a>
+    </p>
+
+  </div>
+</nav>

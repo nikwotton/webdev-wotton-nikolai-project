@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <form #f="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input #name="ngModel" [ngModel]="widget['name']" ngModel required name="name" type="text"
+             class="form-control" id="name" placeholder="Widget Name">
+      <span class="help-block" *ngIf="name.invalid && name.touched">
+        Please enter a Widget Name!
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="text">Text</label>
+      <input #text="ngModel" [ngModel]="widget['text']" ngModel required name="text" type="text"
+             class="form-control" id="text" placeholder="Widget Text">
+      <span class="help-block" *ngIf="text.invalid && text.touched">
+        Please enter Widget Text!
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="url">URL</label>
+      <input #url="ngModel" [ngModel]="widget['url']" ngModel name="url" type="url"
+             class="form-control" id="url" placeholder="Widget Url">
+    </div>
+    <div class="form-group">
+      <label for="width">Width</label>
+      <input #width="ngModel" [ngModel]="widget['width']" ngModel required name="width"
+             type="number"
+             class="form-control" id="width" placeholder="Widget Width 1-100">
+      <span class="help-block" *ngIf="width.invalid && width.touched">
+        Please enter a width percent from 1 - 100
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="upload">Upload</label>
+      <input #upload="ngModel" ngModel name="upload" type="file"
+             class="form-control" id="upload">
+      <button class="btn form-control button-top-margin navbar-blue">Upload Image</button>
+    </div>
+    <button (click)="this.notify.emit()"
+            class="btn-danger form-control button-top-margin">Delete
+    </button>
+  </form>
+</div>

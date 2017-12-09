@@ -1,0 +1,48 @@
+<div class="container">
+  <div *ngIf="(username.invalid && username.touched) ||
+              (password.invalid && password.touched) ||
+              errorFlag"
+       class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+
+  <h1>Login</h1>
+
+  <form (ngSubmit)="login()" #f="ngForm">
+
+    <input placeholder="username"
+           name="username"
+           type="text"
+           class="form-control"
+           ngModel
+           autocomplete="off"
+           spellcheck="false"
+           required
+           minlength="3"
+           #username="ngModel"/>
+    <span class="help-block" *ngIf="!username.valid && username.touched">
+      Please enter username at least 3 characters long!
+    </span>
+
+    <input placeholder="password"
+           name="password"
+           type="password"
+           class="form-control"
+           ngModel
+           required
+           #password="ngModel"/>
+    <span class="help-block" *ngIf="!password.valid && password.touched">
+      Please enter a password!
+    </span>
+
+    <button class="btn btn-primary btn-block"
+            type="submit"
+            [disabled]="!f.valid">Login
+    </button>
+    <a [routerLink]="['/register']" class="btn btn-success btn-block">Register</a>
+    <a href="/facebook/login" class="btn btn-primary btn-block">
+      <span class="fa fa-facebook"></span>
+      Facebook
+    </a>
+  </form>
+</div>

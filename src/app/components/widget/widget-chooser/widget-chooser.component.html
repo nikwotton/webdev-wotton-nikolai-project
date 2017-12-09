@@ -1,0 +1,48 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--back mark-->
+    <p class="navbar-text pull-left">
+      <a [routerLink]="['..']" class="navbar-link"><span
+        class="glyphicon glyphicon-chevron-left"></span></a>
+    </p>
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b>Choose Widget</b>
+      </a>
+    </p>
+
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <ul class="list-group">
+    <li class="list-group-item borderless"><a (click)="submit('HEADER')">Header</a>
+    </li>
+    <li class="list-group-item borderless"><a [routerLink]="['.']">Label</a></li>
+    <li class="list-group-item borderless"><a (click)="submit('HTML')">HTML</a></li>
+    <li class="list-group-item borderless"><a (click)="submit('INPUT')">Text Input</a>
+    </li>
+    <li class="list-group-item borderless"><a [routerLink]="['.']">Link</a></li>
+    <li class="list-group-item borderless"><a [routerLink]="['.']">Button</a></li>
+    <li class="list-group-item borderless"><a (click)="submit('IMAGE')">Image</a></li>
+    <li class="list-group-item borderless"><a (click)="submit('YOUTUBE')">Youtube</a>
+    </li>
+    <li class="list-group-item borderless"><a [routerLink]="['.']">Data Table</a>
+    </li>
+    <li class="list-group-item borderless"><a [routerLink]="['.']">Repeater</a>
+    </li>
+  </ul>
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/profile']"><span class="glyphicon glyphicon-user"></span></a>
+    </p>
+
+  </div>
+</nav>

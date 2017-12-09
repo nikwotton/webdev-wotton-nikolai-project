@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <form #f="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input #name="ngModel" [ngModel]="widget['name']" ngModel required name="name" type="text"
+             class="form-control" id="name" placeholder="Widget Name">
+      <span class="help-block" *ngIf="name.invalid && name.touched">
+        Please enter a Widget Name!
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="url">URL</label>
+      <input #url="ngModel" [ngModel]="widget['url']" ngModel name="url" type="url"
+             class="form-control" id="url" required placeholder="Widget Url">
+      <span class="help-block" *ngIf="url.invalid && url.touched">
+        Please enter a url!
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="width">Width</label>
+      <input #width="ngModel" [ngModel]="widget['width']" ngModel required name="width"
+             type="text"
+             class="form-control" id="width" placeholder="Widget Width">
+      <span class="help-block" *ngIf="width.invalid && width.touched">
+        Please enter a width!
+      </span>
+    </div>
+    <button (click)="this.notify.emit()"
+            class="btn-danger form-control button-top-margin">Delete
+    </button>
+  </form>
+</div>

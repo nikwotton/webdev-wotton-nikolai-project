@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  padding-top: 80px;
+  padding-bottom: 70px
+}
+
+.navbar-blue {
+  background-color: #4088C4;
+  border: none;
+}
+
+.navbar-link {
+  border: none;
+}
+
+.input-label {
+  font-weight: bold;
+}
+
+.white {
+  color: white
+}
+
+.borderless {
+  border: 0 none;
+}
+
+.button-top-margin {
+  margin-top: 10px
+}
+
+.file-upload {
+  padding-top: 0;
+}
+
+.header-text {
+  font-size: xx-large;
+  font-weight: bold
+}
+
+.subheader-text {
+  font-size: large;
+  font-weight: bold
+}
+
+.glyphicon {
+  font-size: medium;
+  margin-left: 5px;
+  margin-top: 2px;
+  margin-right: 5px;
+}
+
+.color-black {
+  color: black
+}
+
+.inline {
+  display: inline-block;
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+img {
+  max-width: 100%
+}
+
+iframe {
+  max-width: 100%
+}
+
+a.btn-danger {
+  text-align: center;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+input.ng-valid {
+  background-color: lightgreen;
+}
+
+textarea.ng-valid {
+  background-color: lightgreen;
+}
+
+input.ng-touched.ng-invalid {
+  background: darksalmon;
+}
+

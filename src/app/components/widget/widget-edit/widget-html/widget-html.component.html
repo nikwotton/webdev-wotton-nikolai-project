@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <form #f="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input #name="ngModel" [ngModel]="widget['name']" ngModel required name="name" type="text"
+             class="form-control" id="name" placeholder="Widget Name">
+      <span class="help-block" *ngIf="name.invalid && name.touched">
+        Please enter a Widget Name!
+      </span>
+    </div>
+    <quill-editor [(ngModel)]="widget['text']" name="text" required ngModel type="text"></quill-editor>
+    <button (click)="this.notify.emit()"
+            class="btn-danger form-control button-top-margin">Delete
+    </button>
+  </form>
+</div>

@@ -1,0 +1,60 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--back mark-->
+    <p class="navbar-text pull-left">
+      <a [routerLink]="['..']" class="navbar-link"><span
+        class="glyphicon glyphicon-chevron-left"></span></a>
+    </p>
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b>Widget Edit</b>
+      </a>
+    </p>
+
+    <!--plus mark-->
+    <p class="navbar-text pull-right">
+      <!--<button [disabled]="!form.valid" (click)="submit()"-->
+      <button (click)="submit()" [disabled]="child !== undefined && !child.form.valid"
+              class="navbar-link"><span
+        class="glyphicon glyphicon-ok"></span></button>
+    </p>
+
+  </div>
+</nav>
+
+<div [ngSwitch]="widget.type">
+
+  <div *ngSwitchCase="'HEADER'">
+    <app-widget-header #ref (notify)="onDelete()"></app-widget-header>
+  </div>
+
+  <div *ngSwitchCase="'IMAGE'">
+    <app-widget-image #ref (notify)="onDelete()"></app-widget-image>
+  </div>
+
+  <div *ngSwitchCase="'YOUTUBE'">
+    <app-widget-youtube #ref (notify)="onDelete()"></app-widget-youtube>
+  </div>
+
+  <div *ngSwitchCase="'HTML'">
+    <app-widget-html #ref (notify)="onDelete()"></app-widget-html>
+  </div>
+
+  <div *ngSwitchCase="'INPUT'">
+    <app-widget-text #ref (notify)="onDelete()"></app-widget-text>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/user', developerId]"><span class="glyphicon glyphicon-user"></span></a>
+    </p>
+
+  </div>
+</nav>

@@ -1,0 +1,66 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--back mark-->
+    <p class="navbar-text pull-left">
+      <a [routerLink]="['..']"
+         class="navbar-link"><span
+        class="glyphicon glyphicon-chevron-left"></span></a>
+    </p>
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b>Edit Page</b>
+      </a>
+    </p>
+
+    <!--plus mark-->
+    <p class="navbar-text pull-right">
+      <button [disabled]="!f.valid" (click)="submit()" class="navbar-link">
+        <span class="glyphicon glyphicon-ok"></span>
+      </button>
+    </p>
+
+  </div>
+</nav>
+
+<div class="container">
+  <div *ngIf="(name.invalid && name.touched) || (description.invalid && description.touched)"
+       class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+  <form #f="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input #name="ngModel" [ngModel]="page['name']" ngModel required name="name" type="text"
+             class="form-control" id="name"
+             placeholder="Page Name">
+      <span class="help-block" *ngIf="name.invalid && name.touched">
+        Please enter a Page Name!
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="description">Title</label>
+      <input #description="ngModel" [ngModel]="page['description']" ngModel required name="description"
+             type="text" class="form-control"
+             id="description" placeholder="Page Title">
+    </div>
+    <span class="help-block" *ngIf="description.invalid && description.touched">
+      Please enter a Page Title!
+    </span>
+    <button (click)="onDelete()" class="btn btn-danger button-top-margin form-control"
+            type="button">
+      Delete
+    </button>
+  </form>
+</div>
+
+<!-- Footer -->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['../../../..']"><span class="glyphicon glyphicon-user"></span></a>
+    </p>
+  </div>
+</nav>
