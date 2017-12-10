@@ -32,6 +32,11 @@ import {WidgetService} from './services/widget.service.client';
 import {QuillEditorModule} from 'ngx-quill-editor';
 import {SharedService} from './services/shared.service';
 import {AuthGuard} from './services/auth-guard.service';
+import {MemeListComponent} from './components/memes/meme-list/meme-list.component';
+import {AboutComponent} from './components/about/about.component';
+import {MemeService} from './services/meme.service.client';
+import {MemeNewComponent} from './components/memes/meme-new/meme-new.component';
+import {ImageService} from './services/image.service.client';
 
 @NgModule({
   // Declare components here
@@ -55,7 +60,10 @@ import {AuthGuard} from './services/auth-guard.service';
     WidgetImageComponent,
     WidgetYoutubeComponent,
     WidgetHTMLComponent,
-    WidgetTextComponent
+    WidgetTextComponent,
+    MemeListComponent,
+    MemeNewComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +73,7 @@ import {AuthGuard} from './services/auth-guard.service';
     QuillEditorModule
   ],
   // Client Side services here
-  providers: [UserService, WebsiteService, PageService, WidgetService, SharedService, AuthGuard],
+  providers: [UserService, WebsiteService, PageService, WidgetService, SharedService, AuthGuard, MemeService, ImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

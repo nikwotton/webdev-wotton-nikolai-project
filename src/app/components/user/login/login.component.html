@@ -21,7 +21,7 @@
            minlength="3"
            #username="ngModel"/>
     <span class="help-block" *ngIf="!username.valid && username.touched">
-      Please enter username at least 3 characters long!
+      Please enter a valid username!
     </span>
 
     <input placeholder="password"
@@ -44,5 +44,6 @@
       <span class="fa fa-facebook"></span>
       Facebook
     </a>
+    <a [routerLink]="['/']" class="btn btn-info btn-block">Home Page</a>
   </form>
 </div>

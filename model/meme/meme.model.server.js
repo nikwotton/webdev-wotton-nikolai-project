@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
 
 module.exports = function() {
-  return mongoose.model('User', require('./user.schema.server')());
+  return mongoose.model('Meme', require('./meme.schema.server')());
 };

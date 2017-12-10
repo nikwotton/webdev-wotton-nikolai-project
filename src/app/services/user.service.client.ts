@@ -21,6 +21,8 @@ export class UserService {
     'findUserById': this.findUserById,
     'findUserByUsername': this.findUserByUsername,
     'findUserByCredentials': this.findUserByCredentials,
+    'findUsersByType': this.findUsersByType,
+    'findAllUsers': this.findAllUsers,
     'updateUser': this.updateUser,
     'deleteUser': this.deleteUser,
     'login': this.login,
@@ -52,6 +54,20 @@ export class UserService {
 
   findUserByCredentials(username: string, password: string) {
     return this.http.get(this.baseUrl + '/api/user?username=' + username + '&password=' + password)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
+  findUsersByType(type: String) {
+    return this.http.get(this.baseUrl + '/api/user?type=' + type)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
+  findAllUsers() {
+    return this.http.get(this.baseUrl + '/api/user')
       .map((res: Response) => {
         return res.json();
       });
@@ -93,11 +109,12 @@ export class UserService {
       });
   }
 
-  register(username: String, password: String) {
+  register(username: String, password: String, type: String) {
     this.options.withCredentials = true;
     const user = {
       username: username,
-      password: password
+      password: password,
+      type: type
     };
 
     return this.http.post(this.baseUrl + '/api/register', user, this.options)

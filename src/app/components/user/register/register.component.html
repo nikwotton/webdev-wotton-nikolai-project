@@ -17,7 +17,7 @@
              ngModel
              minlength="3"
              required
-             #username="ngModel" />
+             #username="ngModel"/>
       <span class="help-block" *ngIf="username.invalid && username.touched">
         Please enter a username at least 3 characters long!
       </span>
@@ -32,7 +32,7 @@
              id="password"
              ngModel
              required
-             #password="ngModel" />
+             #password="ngModel"/>
       <span class="help-block" *ngIf="password.invalid && password.touched">
         Please enter a password!
       </span>
@@ -47,10 +47,18 @@
              id="verify"
              ngModel
              required
-             #verify="ngModel" />
+             #verify="ngModel"/>
       <span class="help-block" *ngIf="verify.invalid && verify.touched">
         Please verify your password!
       </span>
+    </div>
+
+    <div class="form-group">
+      <label for="type">Are you a student or teacher?</label>
+      <div id="type">
+        <input type="radio" name="type" value="student" ngModel="type">Student
+        <input type="radio" name="type" value="teacher" ngModel="type">Teacher
+      </div>
     </div>
   </form>
   <button [disabled]="!f.valid" (click)="submit()" class="btn btn-primary btn-block">Register</button>

@@ -17,13 +17,20 @@ import {WidgetEditComponent} from './components/widget/widget-edit/widget-edit.c
 import {WidgetListComponent} from './components/widget/widget-list/widget-list.component';
 import {ProfileComponent} from './components/user/profile/profile.component';
 import {AuthGuard} from './services/auth-guard.service';
+import {HomeComponent} from './components/home/home.component';
+import {MemeListComponent} from './components/memes/meme-list/meme-list.component';
+import {AboutComponent} from './components/about/about.component';
+import {MemeNewComponent} from './components/memes/meme-new/meme-new.component';
 
 const APP_ROUTES: Routes = [
-  {path: '', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'default', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'default', component: HomeComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'memes', component: MemeListComponent},
+  {path: 'about', component: AboutComponent},
+  {path: 'memes/new', component: MemeNewComponent, canActivate: [AuthGuard]},
   {path: 'user/:uid/website', component: WebsiteListComponent},
   {path: 'user/:uid/website/new', component: WebsiteNewComponent},
   {path: 'user/:uid/website/:wid', component: WebsiteEditComponent},
@@ -32,7 +39,7 @@ const APP_ROUTES: Routes = [
   {path: 'user/:uid/website/:wid/page/:pid', component: PageEditComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget', component: WidgetListComponent},
   {path: 'user/:uid/website/:wid/page/:pid/widget/new', component: WidgetChooserComponent},
-  {path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent}
+  {path: 'user/:uid/website/:wid/page/:pid/widget/:wgid', component: WidgetEditComponent},
 ];
 
 // Export the routes as module providers

@@ -16,17 +16,19 @@ module.exports = function (app) {
     connectionString += '@ds135534.mlab.com:35534/heroku_590dng68'; // use yours
   }
 
-  const mongoose = require("mongoose");
+  const mongoose = require('mongoose');
   const mongojs = require('mongojs');
 
   mongoose.connect(connectionString);
   mongojs('web-app-maker');
 
-  const model = require("../model/models.server.js")();
+  const model = require('../model/models.server.js')();
 
-  require("./services/widget.service.server.js")(app, model.widgetModel);
-  require("./services/page.service.server.js")(app, model.pageModel);
-  require("./services/website.service.server")(app, model.websiteModel);
-  require("./services/user.service.server")(app, model.userModel);
+  require('./services/widget.service.server.js')(app, model.widgetModel);
+  require('./services/page.service.server.js')(app, model.pageModel);
+  require('./services/website.service.server')(app, model.websiteModel);
+  require('./services/user.service.server')(app, model.userModel);
+  require('./services/meme.service.server')(app, model.memeModel);
+  require('./services/image.service.server')(app, model.imageModel);
 };
 

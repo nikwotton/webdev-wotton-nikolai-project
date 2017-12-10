@@ -1,0 +1,82 @@
+<nav class="navbar-blue navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--back mark-->
+    <p class="navbar-text pull-left">
+      <a [routerLink]="['..']" class="navbar-link"><span
+        class="glyphicon glyphicon-chevron-left white"></span></a>
+    </p>
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b class="white">New Meme</b>
+      </a>
+    </p>
+
+    <!--plus mark-->
+    <p class="navbar-text pull-right">
+      <button [disabled]="!f.valid" (click)="submit()" class="navbar-link navbar-blue"><span
+        class="glyphicon glyphicon-ok white"></span></button>
+    </p>
+
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div>
+    <div
+      *ngIf="(top.invalid && top.touched) || (bottom.invalid && bottom.touched) || (description.invalid && description.touched) || errorFlag"
+      class="alert alert-danger">
+      {{errorMsg}}
+    </div>
+    <form #f="ngForm">
+      <div class="form-group">
+        <label for="url">Pick a person:</label>
+        <select id="url" (change)="personSelected()" ngControl="url" #url="ngModel" ngModel name="url">
+          <option value="default" disabled>Select a person!</option>
+          <option *ngFor="let user of users" value="{{user._id}}">{{user.username}}</option>
+        </select>
+        <label for="new">New Url</label>
+        <input #new="ngModel" [ngModel]="newValue" name="new" type="url" id="new" placeholder="www.example.com/img.png"
+               [disabled]="disableUrl" style="width: 50%;">
+      </div>
+      <div class="form-group">
+        <label for="top">Top Text</label>
+        <input #top="ngModel" ngModel required name="top" type="text"
+               class="form-control" id="top" placeholder="Top Text">
+        <span class="help-block" *ngIf="top.invalid && top.touched">
+          Please enter a Top Text!
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="bottom">Bottom Text</label>
+        <input #bottom="ngModel" ngModel required name="bottom" type="text"
+               class="form-control" id="bottom" placeholder="Bottom Text">
+        <span class="help-block" *ngIf="bottom.invalid && bottom.touched">
+          Please enter a Bottom Text!
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="description">Meme Description</label>
+        <textarea #description="ngModel" ngModel required name="description" type="text"
+                  class="form-control" id="description" placeholder="Website Description"
+                  rows="3"></textarea>
+        <span class="help-block" *ngIf="description.invalid && description.touched">
+          Please enter a Meme Description!
+        </span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<nav class="navbar-blue navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/profile']"><span
+        class="glyphicon glyphicon-user white"></span></a>
+    </p>
+
+  </div>
+</nav>
