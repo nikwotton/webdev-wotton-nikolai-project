@@ -1,0 +1,77 @@
+<nav class="navbar-blue navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!--back mark-->
+    <p class="navbar-text pull-left">
+      <a [routerLink]="['/memes']" class="navbar-link"><span
+        class="glyphicon glyphicon-chevron-left white"></span></a>
+    </p>
+
+    <!--heading on the nav bar-->
+    <p class="navbar-header pull-left">
+      <a class="navbar-brand thick">
+        <b class="white">New Meme</b>
+      </a>
+    </p>
+
+    <!--plus mark-->
+    <p class="navbar-text pull-right">
+      <button [disabled]="!f.valid || !isMine" (click)="submit()" class="navbar-link navbar-blue"><span
+        class="glyphicon glyphicon-ok white"></span></button>
+    </p>
+
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <img src="{{memeUrl}}" class="meme-center">
+  <br/><br/><br/><br/>
+  <div>
+    <div
+      *ngIf="(top.invalid && top.touched) || (bottom.invalid && bottom.touched) || (description.invalid && description.touched) || errorFlag"
+      class="alert alert-danger">
+      {{errorMsg}}
+    </div>
+    <form #f="ngForm">
+      <div class="form-group">
+        <label>Person: {{authorName}}</label>
+      </div>
+      <div class="form-group">
+        <label for="top">Top Text</label>
+        <input #top="ngModel" [ngModel]='meme.topText' required name="top" type="text"
+               class="form-control" id="top" placeholder="Top Text" [disabled]="!isMine">
+        <span class="help-block" *ngIf="top.invalid && top.touched">
+          Please enter a Top Text!
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="bottom">Bottom Text</label>
+        <input #bottom="ngModel" [ngModel]='meme.bottomText' required name="bottom" type="text"
+               class="form-control" id="bottom" placeholder="Bottom Text" [disabled]="!isMine">
+        <span class="help-block" *ngIf="bottom.invalid && bottom.touched">
+          Please enter a Bottom Text!
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="description">Meme Description</label>
+        <textarea #description="ngModel" [ngModel]='meme.description' required name="description" type="text"
+                  class="form-control" id="description" placeholder="Meme Description"
+                  rows="3" [disabled]="!isMine"></textarea>
+        <span class="help-block" *ngIf="description.invalid && description.touched">
+          Please enter a Meme Description!
+        </span>
+      </div>
+      <button [disabled]="!isMine" (click)="onDelete()" class="btn-danger form-control button-top-margin">Delete</button>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<nav class="navbar-blue navbar-default navbar-fixed-bottom">
+  <div class="container-fluid">
+    <p class="navbar-text pull-right">
+      <a [routerLink]="['/profile']"><span
+        class="glyphicon glyphicon-user white"></span></a>
+    </p>
+  </div>
+</nav>

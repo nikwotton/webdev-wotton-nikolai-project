@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WebsiteEditComponent } from './website-edit.component';
+import { MemeEditComponent } from './meme-edit.component';
 
-describe('WebsiteEditComponent', () => {
-  let component: WebsiteEditComponent;
-  let fixture: ComponentFixture<WebsiteEditComponent>;
+describe('MemeEditComponent', () => {
+  let component: MemeEditComponent;
+  let fixture: ComponentFixture<MemeEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WebsiteEditComponent ]
+      declarations: [ MemeEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(WebsiteEditComponent);
+    fixture = TestBed.createComponent(MemeEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

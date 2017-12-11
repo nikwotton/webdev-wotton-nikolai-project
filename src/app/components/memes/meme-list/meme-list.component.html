@@ -36,7 +36,7 @@
   <ul class="list-group">
     <li class="list-group-item borderless" *ngFor="let meme of memes">
       <img src="{{getMeme(meme)}}">
-      <a [routerLink]="[meme._id]" class="pull-right"><span
+      <a [routerLink]="['/memes/edit/', meme._id]" class="pull-right"><span
         class="glyphicon glyphicon-cog"></span></a>
     </li>
   </ul>
