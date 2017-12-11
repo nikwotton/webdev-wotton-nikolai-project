@@ -58,7 +58,11 @@ export class MemeEditComponent implements OnInit {
   }
 
   myComment(comment) {
-    return comment.poster === this.sharedService.user['_id'] || this.sharedService.user['type'] === 'admin';
+    return comment.poster === this.sharedService.user['_id'];
+  }
+
+  isAdmin() {
+    return this.sharedService.user['type'] === 'admin';
   }
 
   whoseComment(comment) {

@@ -78,7 +78,7 @@
   <ul class="list-group">
     <li class="list-group-item borderless" *ngFor="let comment of comments">
       {{comment.comment}}
-      <a (click)="delete(comment)" class="pull-right" [hidden]="!myComment(comment)"><span
+      <a (click)="delete(comment)" class="pull-right" [hidden]="!myComment(comment) && !isAdmin()"><span
         class="glyphicon glyphicon-trash"></span></a>
       <p class="pull-right" [hidden]="myComment(comment)"><span>- {{whoseComment(comment)}}</span></p>
     </li>
