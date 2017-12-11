@@ -89,7 +89,6 @@ export class MemeNewComponent implements OnInit {
         'topText': top, 'bottomText': bottom, 'description': description,
         image: imageId, poster: this.sharedService.user['_id']
       };
-      console.log(meme);
       this.memeService.createMeme(meme).subscribe(() => {
       });
     }

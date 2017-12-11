@@ -38,7 +38,6 @@ export class WidgetHTMLComponent implements OnInit {
   getWidget() {
     this.widget['name'] = this.form.value.name;
     this.widget['text'] = this.form.value.text;
-    console.log(this.widget['text']);
     return this.widget;
   }
 }

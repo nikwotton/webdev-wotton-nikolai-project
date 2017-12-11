@@ -41,7 +41,6 @@ export class WidgetTextComponent implements OnInit {
     this.widget['name'] = this.form.value.name;
     this.widget['placeholder'] = this.form.value.placeholder;
     this.widget['formatted'] = this.form.value.formatted;
-    console.log(this.widget['text']);
     return this.widget;
   }
 }

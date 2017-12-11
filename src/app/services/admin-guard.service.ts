@@ -9,11 +9,6 @@ export class AdminGuard implements CanActivate {
   }
 
   canActivate() {
-    // console.log(this.userService.loggedIn());
-    // console.log(this.sharedService.user['type'] === 'admin');
-    // console.log(this.sharedService.user);
-    // return this.sharedService.user['type'] === 'admin';
-    // return true;
     return this.userService.isAdmin();
   }
 }
