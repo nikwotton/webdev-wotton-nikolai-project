@@ -23,6 +23,7 @@ import {AboutComponent} from './components/about/about.component';
 import {MemeNewComponent} from './components/memes/meme-new/meme-new.component';
 import {UserListComponent} from './components/user/user-list/user-list.component';
 import {AdminGuard} from './services/admin-guard.service';
+import {UserEditComponent} from './components/user/user-edit/user-edit.component';
 
 const APP_ROUTES: Routes = [
   {path: '', component: HomeComponent},
@@ -34,6 +35,7 @@ const APP_ROUTES: Routes = [
   {path: 'memes/search/:uid', component: MemeListComponent},
   {path: 'about', component: AboutComponent},
   {path: 'users', component: UserListComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'users/:uid', component: UserEditComponent, canActivate: [AuthGuard, AdminGuard]},
   {path: 'memes/new', component: MemeNewComponent, canActivate: [AuthGuard]},
   {path: 'user/:uid/website', component: WebsiteListComponent},
   {path: 'user/:uid/website/new', component: WebsiteNewComponent},

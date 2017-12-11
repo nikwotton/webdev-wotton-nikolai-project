@@ -39,6 +39,7 @@ import {MemeNewComponent} from './components/memes/meme-new/meme-new.component';
 import {ImageService} from './services/image.service.client';
 import {AdminGuard} from './services/admin-guard.service';
 import {UserListComponent} from './components/user/user-list/user-list.component';
+import {UserEditComponent} from './components/user/user-edit/user-edit.component';
 
 @NgModule({
   // Declare components here
@@ -66,7 +67,8 @@ import {UserListComponent} from './components/user/user-list/user-list.component
     MemeListComponent,
     MemeNewComponent,
     AboutComponent,
-    UserListComponent
+    UserListComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,

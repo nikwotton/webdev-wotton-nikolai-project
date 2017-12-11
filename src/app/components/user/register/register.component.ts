@@ -34,7 +34,6 @@ export class RegisterComponent implements OnInit {
       this.errorMsg = 'Please select either student or teacher';
       return;
     }
-    // if (this.form.value.type )
     this.userService.register(this.form.value.username, p1, this.form.value.type)
       .subscribe(
         (data: any) => {
