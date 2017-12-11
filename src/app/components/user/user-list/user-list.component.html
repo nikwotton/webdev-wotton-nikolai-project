@@ -22,7 +22,14 @@
 
   </div>
 </nav>
-
+<form #f="ngForm" class="container-fluid">
+  <label for="search">Search Users by username: </label>
+  <input type="text" [ngModel]="searchText" id="search" name="search" type="text"
+         placeholder="Search by Username of Star"
+         (change)="updateSearch()">
+  <span class="help-block">Press enter to search</span>
+  <span class="help-block err">{{searchMessage}}</span>
+</form>
 <div class="container-fluid">
   <ul class="list-group">
     <li class="list-group-item borderless" *ngFor="let user of users">{{user.username}}
