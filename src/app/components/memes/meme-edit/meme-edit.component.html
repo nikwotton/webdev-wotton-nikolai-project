@@ -10,12 +10,12 @@
     <!--heading on the nav bar-->
     <p class="navbar-header pull-left">
       <a class="navbar-brand thick">
-        <b class="white">New Meme</b>
+        <b class="white">View Meme</b>
       </a>
     </p>
 
     <!--plus mark-->
-    <p class="navbar-text pull-right">
+    <p class="navbar-text pull-right" [hidden]="!isMine">
       <button [disabled]="!f.valid || !isMine" (click)="submit()" class="navbar-link navbar-blue"><span
         class="glyphicon glyphicon-ok white"></span></button>
     </p>
@@ -23,7 +23,7 @@
   </div>
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid col-xs-6">
   <img src="{{memeUrl}}" class="meme-center">
   <br/><br/><br/><br/>
   <div>
@@ -34,9 +34,9 @@
     </div>
     <form #f="ngForm">
       <div class="form-group">
-        <label>Person: {{authorName}}</label>
+        <label>Poster: {{authorName}}</label>
       </div>
-      <div class="form-group">
+      <div class="form-group" [hidden]="!isMine">
         <label for="top">Top Text</label>
         <input #top="ngModel" [ngModel]='meme.topText' required name="top" type="text"
                class="form-control" id="top" placeholder="Top Text" [disabled]="!isMine">
@@ -44,7 +44,7 @@
           Please enter a Top Text!
         </span>
       </div>
-      <div class="form-group">
+      <div class="form-group" [hidden]="!isMine">
         <label for="bottom">Bottom Text</label>
         <input #bottom="ngModel" [ngModel]='meme.bottomText' required name="bottom" type="text"
                class="form-control" id="bottom" placeholder="Bottom Text" [disabled]="!isMine">
@@ -53,17 +53,43 @@
         </span>
       </div>
       <div class="form-group">
-        <label for="description">Meme Description</label>
+        <label for="description">Meme Description:</label>
+        <div [hidden]="!isMine">
         <textarea #description="ngModel" [ngModel]='meme.description' required name="description" type="text"
                   class="form-control" id="description" placeholder="Meme Description"
                   rows="3" [disabled]="!isMine"></textarea>
-        <span class="help-block" *ngIf="description.invalid && description.touched">
+          <span class="help-block" *ngIf="description.invalid && description.touched">
           Please enter a Meme Description!
         </span>
+        </div>
+        <div [hidden]="isMine">
+          <p>{{meme.description}}</p>
+        </div>
       </div>
-      <button [disabled]="!isMine" (click)="onDelete()" class="btn-danger form-control button-top-margin">Delete</button>
+      <div [hidden]="!isMine">
+        <button [disabled]="!isMine" (click)="onDelete()" class="btn-danger form-control button-top-margin">Delete
+        </button>
+      </div>
     </form>
   </div>
+</div>
+<div class="container-fluid col-xs-6">
+  <label>Comments:</label>
+  <ul class="list-group">
+    <li class="list-group-item borderless" *ngFor="let comment of comments">
+      {{comment.comment}}
+      <a (click)="delete(comment)" class="pull-right" [hidden]="!myComment(comment)"><span
+        class="glyphicon glyphicon-trash"></span></a>
+      <p class="pull-right" [hidden]="myComment(comment)"><span>- {{whoseComment(comment)}}</span></p>
+    </li>
+  </ul>
+  <form #f2="ngForm">
+  <textarea #comment="ngModel" name="comment" type="text" [ngModel]=''
+            class="form-control" id="comment" placeholder="Add a Comment!"
+            rows="3"></textarea>
+    <br/>
+    <a (click)="submitComment()" class="btn btn-primary btn-block">Add comment</a>
+  </form>
 </div>
 
 <!-- Footer -->

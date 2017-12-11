@@ -5,6 +5,7 @@ import {NgForm} from '@angular/forms';
 import {ImageService} from '../../../services/image.service.client';
 import {SharedService} from '../../../services/shared.service';
 import {UserService} from '../../../services/user.service.client';
+import {CommentService} from '../../../services/comment.service.client';
 
 @Component({
   selector: 'app-meme-edit',
@@ -14,15 +15,19 @@ import {UserService} from '../../../services/user.service.client';
 export class MemeEditComponent implements OnInit {
 
   @ViewChild('f') form: NgForm;
+  @ViewChild('f2') commentForm: NgForm;
 
   memeId: string;
   meme: any = {};
   memeUrl = '';
   isMine = false;
   authorName = '';
+  comments: any;
+  commentOwners = {};
 
   constructor(private memeService: MemeService, private activatedRoute: ActivatedRoute, private router: Router,
-              private imageService: ImageService, private sharedService: SharedService, private userService: UserService) {
+              private imageService: ImageService, private sharedService: SharedService, private userService: UserService,
+              private commentService: CommentService) {
   }
 
   ngOnInit() {
@@ -40,8 +45,25 @@ export class MemeEditComponent implements OnInit {
               });
             });
           });
+          this.commentService.findAllCommentsForMeme(this.memeId).subscribe((data: any) => {
+            this.comments = data;
+            this.comments.forEach(comment => {
+              this.userService.findUserById(comment.poster).subscribe((user: any) => {
+                this.commentOwners[comment._id] = user.username;
+              });
+            });
+          });
         }
       );
+  }
+
+  myComment(comment) {
+    return comment.poster === this.sharedService.user['_id'];
+  }
+
+  whoseComment(comment) {
+    console.log(this.commentOwners);
+    return this.commentOwners[comment._id];
   }
 
   submit() {
@@ -63,5 +85,19 @@ export class MemeEditComponent implements OnInit {
     this.memeService.deleteMeme(this.memeId).subscribe(() => {
     });
     return this.router.navigate(['/memes']);
+  }
+
+  delete(comment) {
+    this.commentService.deleteComment(comment._id).subscribe(() => {
+    });
+    this.ngOnInit();
+  }
+
+  submitComment() {
+    const comment = {'comment': this.commentForm.value.comment, 'meme': this.memeId, 'poster': this.sharedService.user['_id']};
+    this.commentService.createComment(comment).subscribe(() => {
+    });
+    this.commentForm.setValue({'comment': ''});
+    this.ngOnInit();
   }
 }

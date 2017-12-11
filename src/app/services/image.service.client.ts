@@ -18,17 +18,8 @@ export class ImageService {
     'findAllImages': this.findAllImages,
     'findImageById': this.findImageById,
     'updateImage': this.updateImage,
-    'deleteImage': this.deleteImage,
-    'createGenerator': this.createGenerator
+    'deleteImage': this.deleteImage
   };
-
-  createGenerator(url: String, id) {
-    return this.http.get('http://version1.api.memegenerator.net//Generator_Create?image=' + url + '&displayName=' + id +
-      '&apiKey=ab4d409e-ee94-458a-9107-19b946b8e24e')
-      .map((res: Response) => {
-        return res.json();
-      });
-  }
 
   createImage(image: any) {
     return this.http.post(this.baseUrl + '/api/image', image)

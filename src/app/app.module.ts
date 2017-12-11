@@ -41,6 +41,8 @@ import {AdminGuard} from './services/admin-guard.service';
 import {UserListComponent} from './components/user/user-list/user-list.component';
 import {UserEditComponent} from './components/user/user-edit/user-edit.component';
 import {MemeEditComponent} from './components/memes/meme-edit/meme-edit.component';
+import {UserNewComponent} from './components/user/user-new/user-new.component';
+import {CommentService} from './services/comment.service.client';
 
 @NgModule({
   // Declare components here
@@ -70,7 +72,8 @@ import {MemeEditComponent} from './components/memes/meme-edit/meme-edit.componen
     AboutComponent,
     UserListComponent,
     UserEditComponent,
-    MemeEditComponent
+    MemeEditComponent,
+    UserNewComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +83,8 @@ import {MemeEditComponent} from './components/memes/meme-edit/meme-edit.componen
     QuillEditorModule
   ],
   // Client Side services here
-  providers: [UserService, WebsiteService, PageService, WidgetService, SharedService, AuthGuard, MemeService, ImageService, AdminGuard],
+  providers: [UserService, WebsiteService, PageService, WidgetService, SharedService, AuthGuard, MemeService,
+    ImageService, AdminGuard, CommentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
