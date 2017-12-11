@@ -25,7 +25,8 @@
 
 <div class="container">
   <div>
-    <h1>You are editing user: {{user.username}}</h1>
+    <h1 *ngIf="!newUser">You are editing user: {{user.username}}</h1>
+    <h1 *ngIf="newUser">You are adding a new user</h1>
   </div>
   <form #f="ngForm">
     <div class="form-group">
@@ -41,7 +42,20 @@
              #username="ngModel"/>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" *ngIf="newUser">
+      <label for="password">Password</label>
+      <input placeholder="password"
+             [ngModel]="user.password"
+             name="password"
+             type="text"
+             class="form-control"
+             id="password"
+             ngModel
+             required
+             #password="ngModel"/>
+    </div>
+
+    <div class="form-group" *ngIf="!newUser">
       <label for="firstName">First Name</label>
       <input placeholder="First Name"
              [ngModel]="user.firstName"
@@ -53,7 +67,7 @@
              #firstName="ngModel"/>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" *ngIf="!newUser">
       <label for="lastName">Last Name</label>
       <input placeholder="lastName"
              [ngModel]="user.lastName"

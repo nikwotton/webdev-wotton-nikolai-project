@@ -62,7 +62,6 @@ export class MemeEditComponent implements OnInit {
   }
 
   whoseComment(comment) {
-    console.log(this.commentOwners);
     return this.commentOwners[comment._id];
   }
 

@@ -37,6 +37,7 @@ module.exports = function(app, model) {
   app.post('/api/login', passport.authenticate('local'), login);
   app.post('/api/logout', logout);
   app.post('/api/register', register);
+  app.post('/api/admin/register', registerByAdmin);
   app.get('/api/loggedIn', loggedin);
   app.get('/api/isAdmin', isAdmin);
   app.get('/facebook/login', passport.authenticate('facebook', {scope: 'email'}));
@@ -168,6 +169,28 @@ module.exports = function(app, model) {
   function logout(req, res) {
     req.logOut();
     res.sendStatus(200);
+  }
+
+  function registerByAdmin(req, res) {
+    model
+      .findOne({username: req.body.username}, function(err, user) {
+        if (err || user !== null) {
+          res.status(400).send(err);
+        } else {
+          const user = req.body;
+          user.password = bcrypt.hashSync(user.password);
+          model
+            .create(user, function(err, user) {
+              if (err) {
+                res.status(400).send(err);
+              } else {
+                if (user) {
+                  res.json(user);
+                }
+              }
+            });
+        }
+      });
   }
 
   function register(req, res) {

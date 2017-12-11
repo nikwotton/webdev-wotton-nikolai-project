@@ -28,6 +28,7 @@ export class UserService {
     'login': this.login,
     'logout': this.logout,
     'register': this.register,
+    'registerByAdmin': this.registerByAdmin,
     'loggedIn': this.loggedIn,
     'isAdmin': this.isAdmin,
   };
@@ -107,6 +108,20 @@ export class UserService {
     return this.http.post(this.baseUrl + '/api/logout', '', this.options)
       .map((res: Response) => {
         const data = res;
+      });
+  }
+
+  registerByAdmin(username: String, password: String, type: String) {
+    this.options.withCredentials = true;
+    const user = {
+      username: username,
+      password: password,
+      type: type
+    };
+
+    return this.http.post(this.baseUrl + '/api/admin/register', user, this.options)
+      .map((res: Response) => {
+        return res.json();
       });
   }
 
