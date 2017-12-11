@@ -28,7 +28,8 @@ export class UserService {
     'login': this.login,
     'logout': this.logout,
     'register': this.register,
-    'loggedIn': this.loggedIn
+    'loggedIn': this.loggedIn,
+    'isAdmin': this.isAdmin,
   };
 
   createUser(user: any) {
@@ -133,6 +134,19 @@ export class UserService {
           return true;
         } else {
           this.router.navigate(['/login']);
+          return false;
+        }
+      });
+  }
+
+  isAdmin() {
+    return this.http.get(this.baseUrl + '/api/isAdmin', this.options)
+      .map((res: Response) => {
+        const ret = res.json();
+        if (ret === 1) {
+          return true;
+        } else {
+          this.router.navigate(['/profile']);
           return false;
         }
       });

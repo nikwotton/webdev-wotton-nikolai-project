@@ -38,6 +38,7 @@ module.exports = function(app, model) {
   app.post('/api/logout', logout);
   app.post('/api/register', register);
   app.get('/api/loggedIn', loggedin);
+  app.get('/api/isAdmin', isAdmin);
   app.get('/facebook/login', passport.authenticate('facebook', {scope: 'email'}));
   app.get('/auth/facebook/callback', passport.authenticate('facebook',
     {successRedirect: '/profile', failureRedirect: '/login'}));
@@ -199,6 +200,10 @@ module.exports = function(app, model) {
 
   function loggedin(req, res) {
     res.send(req.isAuthenticated() ? req.user : '0');
+  }
+
+  function isAdmin(req, res) {
+    res.send(req.isAuthenticated() ? req.user.type === 'admin' ? '1' : '0' : '0');
   }
 
   function findUserByFacebookId(facebookId) {

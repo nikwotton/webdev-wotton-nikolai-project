@@ -25,9 +25,8 @@
 
 <div class="container-fluid">
   <ul class="list-group">
-    <li class="list-group-item borderless" *ngFor="let meme of memes">
-      <img src="{{getMeme(meme)}}">
-      <a [routerLink]="[meme._id]" class="pull-right"><span
+    <li class="list-group-item borderless" *ngFor="let user of users">{{user.username}}
+      <a [routerLink]="[user._id]" class="pull-right"><span
         class="glyphicon glyphicon-cog"></span></a>
     </li>
   </ul>
