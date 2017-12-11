@@ -31,6 +31,7 @@ const APP_ROUTES: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'memes', component: MemeListComponent},
+  {path: 'memes/search/:uid', component: MemeListComponent},
   {path: 'about', component: AboutComponent},
   {path: 'users', component: UserListComponent, canActivate: [AuthGuard, AdminGuard]},
   {path: 'memes/new', component: MemeNewComponent, canActivate: [AuthGuard]},

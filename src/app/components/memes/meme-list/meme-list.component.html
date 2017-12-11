@@ -23,6 +23,15 @@
   </div>
 </nav>
 
+<form #f="ngForm" class="container-fluid">
+  <label for="search">Search Memes by username: </label>
+  <input type="text" [ngModel]="searchText" id="search" name="search" type="text"
+         placeholder="Search by Username of Star"
+         (keyup)="updateSearch()">
+  <span class="help-block">
+        {{searchMessage}}
+      </span>
+</form>
 <div class="container-fluid">
   <ul class="list-group">
     <li class="list-group-item borderless" *ngFor="let meme of memes">
