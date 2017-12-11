@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   user: any;
   errorFlag = false;
   errorMsg = 'You have an error';
+  isAdmin = false;
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute,
               private router: Router, private sharedService: SharedService) {
@@ -25,6 +26,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.user = this.sharedService.user;
     this.userId = this.user._id;
+    this.isAdmin = this.user.type === 'admin';
   }
 
   submit() {
