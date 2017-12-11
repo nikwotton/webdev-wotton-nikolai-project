@@ -1,6 +1,8 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import {Component, OnInit, Injectable, ViewChild} from '@angular/core';
 import {TestService} from '../../services/test.service.client';
-
+import {MemeService} from '../../services/meme.service.client';
+import {ImageService} from '../../services/image.service.client';
+import {NgForm} from '@angular/forms';
 
 
 @Component({
@@ -10,42 +12,20 @@ import {TestService} from '../../services/test.service.client';
 })
 export class TestComponent implements OnInit {
 
-  constructor(private _testService: TestService) { }
+  @ViewChild('f') form: NgForm;
 
+  imageUrl = '';
+  top = '';
+  bottom = '';
 
-  alertMessage: Boolean = false;
-  successMessage: Boolean = false;
-  message: String;
-  messages: any[] = [];
+  constructor(private memeService: MemeService) {
+  }
+
   ngOnInit() {
-    this.findAllMessages();
-  }
-  findAllMessages() {
-    return this._testService.findAllMessages()
-      .subscribe(
-        (data: any) => {
-          this.messages = data;
-        }
-      );
-  }
-  createMessage() {
-    return this._testService.createMessage(this.message)
-      .subscribe(
-        (data: any) => {
-          this.successMessage = true;
-          this.ngOnInit();
-          this.message = null;
-        }
-      );
-  }
-  deleteMessage(messageId) {
-    return this._testService.deleteMessage(messageId)
-      .subscribe(
-        (data: any) => {
-          this.successMessage = true;
-          this.ngOnInit();
-        }
-      );
+
   }
 
+  submit() {
+    this.imageUrl = this.memeService.getMemeUrl(this.form.value.url, this.form.value.topText, this.form.value.bottomText);
+  }
 }

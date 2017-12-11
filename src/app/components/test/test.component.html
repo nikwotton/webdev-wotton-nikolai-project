@@ -1,59 +1,52 @@
-
-<div class="container">
-
-  <h1>Test</h1>
-
-  <div *ngIf="alertMessage"
-       class="alert alert-danger">
-    "Failed to create"
+<form #f="ngForm">
+  <div class="form-group">
+    <label for="url">Url</label>
+    <input placeholder="url"
+           [ngModel]="imageUurl"
+           name="url"
+           type="text"
+           class="form-control"
+           id="url"
+           ngModel
+           required
+           #url="ngModel"/>
+    <span class="help-block" *ngIf="url.invalid && url.touched">
+        Please enter a url!
+      </span>
   </div>
 
-  <div *ngIf="successMessage"
-       class="alert alert-success">
-    "Succesfully created/deleted"
+  <div class="form-group">
+    <label for="topText">Top Text</label>
+    <input placeholder="First Name"
+           [ngModel]="top"
+           name="topText"
+           type="text"
+           class="form-control"
+           id="topText"
+           ngModel
+           required
+           #topText="ngModel"/>
+    <span class="help-block" *ngIf="topText.invalid && topText.touched">
+        Please enter a First Name!
+      </span>
   </div>
 
-  <table class="table">
-    <thead>
-    <tr>
-      <th>Test Message</th>
-      <th>&nbsp;</th>
-    </tr>
-
-
-    <tr>
-      <td>
-        <input [(ngModel)]="message"
-               placeholder="message"
-               class="form-control"/>
-      </td>
-
-
-      <td>
-        <button (click)="createMessage()"
-                class="btn btn-primary pull-right">
-          <span class="glyphicon glyphicon-plus"></span>
-        </button>
-      </td>
-    </tr>
-    </thead>
-
-
-    <tbody>
-    <tr *ngFor="let message of messages">
-      <td>
-        {{message.message}}
-      </td>
-      <td>
-        <button (click)="deleteMessage(message._id)"
-                class="btn btn-danger pull-right">
-          <span class="glyphicon glyphicon-remove"></span>
-        </button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-
-</div>
-
-
+  <div class="form-group">
+    <label for="bottomText">Bottom Text</label>
+    <input placeholder="bottomText"
+           [ngModel]="bottom"
+           name="bottomText"
+           type="text"
+           class="form-control"
+           id="bottomText"
+           ngModel
+           required
+           #bottomText="ngModel"/>
+    <span class="help-block" *ngIf="!bottomText.valid && bottomText.touched">
+        Please enter a Last Name!
+      </span>
+  </div>
+  <a (click)="submit()" class="btn btn-primary btn-block">Get Meme</a>
+  <br>
+  <img src="{{imageUrl}}">
+</form>
